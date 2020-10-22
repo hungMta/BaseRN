@@ -1,4 +1,13 @@
 apply plugin: "com.android.application"
+project.ext.envConfigFiles = [
+    prddebug: "environments/Debug.env",
+    prdrelease: "environments/Release.env",
+    stgdebug  : "environments/StgDebug.env",
+    stgrelease: "environments/StgRelease.env",
+    devdebug  : "environments/DevDebug.env",
+    devrelease: "environments/DevRelease.env",
+]
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
 
@@ -129,11 +138,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.messageapp"
+        applicationId project.env.get("ANDROID_APP_ID")
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        resValue "string", "build_config_package", "com.messageapp"
     }
     splits {
         abi {
@@ -149,6 +159,21 @@ android {
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            dimension = 'default'
+            resValue "string", "app_name", ":DEV Message"
+        }
+        stg {
+            dimension = 'default'
+            resValue "string", "app_name", ":STG Message"
+        }
+        prd {
+            dimension = 'default'
+             resValue "string", "app_name", "Message"
         }
     }
     buildTypes {

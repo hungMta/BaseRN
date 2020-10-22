@@ -1,0 +1,4 @@
+ENVIRONMENT=PRODUCTION
+BACKEND_URL=https:/$()/api
+ANDROID_APP_ID=com.messageapp
+ANDROID_APP_NAME=Message
