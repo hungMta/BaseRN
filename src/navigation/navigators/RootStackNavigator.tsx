@@ -30,14 +30,15 @@ export const RootStackNavigator = () => {
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{
-          ...createHeaderOptions({backButton: <HeaderButton.Close />}),
-          title: 'Home',
-          headerRight: () => <View />,
-          headerTitleStyle: {
-            textAlign: 'center',
-          },
-        }}
+        options={{headerShown: false}}
+        // options={{
+        //   ...createHeaderOptions({backButton: <HeaderButton.Close />}),
+        //   title: 'Home',
+        //   headerRight: () => <View />,
+        //   headerTitleStyle: {
+        //     textAlign: 'center',
+        //   },
+        // }}
       />
     </Stack.Navigator>
   )

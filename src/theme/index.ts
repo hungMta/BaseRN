@@ -14,5 +14,5 @@ export default {
   spacing,
   styles,
   typography,
-  roundness: 8,
+  roundness: 4,
 }
