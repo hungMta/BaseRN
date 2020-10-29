@@ -1,42 +1,77 @@
 import React from 'react'
-import {ActivityIndicator, View, Modal, StyleSheet} from 'react-native'
+import {View, StyleSheet, Text} from 'react-native'
+import {TouchableOpacity} from 'react-native-gesture-handler'
 import theme from '../theme'
 
 interface Props {
   text?: string
-  size?: 'large' | 'small'
-  colorIndicator?: string
-  isShowIndicator: boolean
 }
-const HeaderOption: React.FC<Props> = ({
-  isShowIndicator = false,
-  size = 'large',
-  colorIndicator = theme.colors.red,
-}) => {
+const HeaderOption: React.FC<Props> = ({text = '1726123-2387'}) => {
   return (
-    <Modal animationType="slide" transparent={true} visible={isShowIndicator}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <ActivityIndicator size={size} color={colorIndicator} />
-        </View>
+    <View style={styles.centeredView}>
+      <View style={styles.styleUserId}>
+        <Text style={styles.textTitle}>User ID </Text>
+        <Text style={styles.textID}>{text}</Text>
       </View>
-    </Modal>
+      <View style={styles.styleSulala}>
+        <Text style={styles.textTitle}> SuLaLa</Text>
+      </View>
+      <View style={styles.wrapButton}>
+        <TouchableOpacity
+          onPress={() => {
+            // TODO
+          }}>
+          <View style={styles.styleButton}>
+            <Text style={styles.textBtn}>Logout</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            // TODO
+          }}>
+          <View style={[styles.styleButton, {marginLeft: 5}]}>
+            <Text style={styles.textBtn}>Setting</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   centeredView: {
-    backgroundColor: 'rgba(52, 52, 52, 0.6)',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  styleUserId: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    flex: 1,
+    alignItems: 'center',
+  },
+  textTitle: {},
+  textID: {},
+
+  styleSulala: {
+    marginHorizontal: -20,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalView: {
-    backgroundColor: 'white',
-    margin: 10,
-    borderRadius: 50,
-    padding: 15,
+  wrapButton: {
     alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+  },
+  styleButton: {
+    backgroundColor: theme.colors.red,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 2,
+    padding: 5,
+  },
+  textBtn: {
+    color: 'white',
   },
 })
 export default HeaderOption

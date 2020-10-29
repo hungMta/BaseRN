@@ -1,18 +1,18 @@
 import {useNavigation} from '@react-navigation/native'
 import React, {useState} from 'react'
 import {
+  ScrollView,
   StyleSheet,
   View,
   TouchableOpacity,
   Image,
   Text,
-  Keyboard,
+  SafeAreaView,
+  TextInput,
 } from 'react-native'
 import Loading from '../../components/Loading'
 
 import Button from '../../components/Button'
-import {TextInput, TouchableWithoutFeedback} from 'react-native-gesture-handler'
-import {SafeAreaView} from 'react-native-safe-area-context'
 import theme from '../../theme'
 const logoImage = require('../../assets/images/12.jpg')
 
@@ -30,65 +30,64 @@ const SignInScreen = () => {
     setTimeout(function () {
       setLoading(false)
       navigation.navigate('HomeScreen')
-    }, 5000)
+    }, 1000)
   }
-
   return (
     <SafeAreaView style={styles.container}>
       {loading && <Loading isShowIndicator={loading} />}
-      <TouchableWithoutFeedback
-        onPress={Keyboard.dismiss}
-        accessible={false}
-        style={styles.wrapContainer}>
+      <ScrollView style={styles.wrapContainer}>
         <Image style={styles.logo} source={logoImage} />
         <View style={styles.wrapInput}>
           <TextInput
             underlineColorAndroid="transparent"
-            style={styles.inputEmail}
+            style={styles.textInput}
           />
           <TextInput
+            secureTextEntry={true}
             underlineColorAndroid="transparent"
-            style={styles.inputEmail}
+            style={styles.textInput}
           />
         </View>
 
         <View style={styles.wrapButton}>
           <View style={styles.wrapCheckBox}>
             <TouchableOpacity
-              style={styles.img}
               onPress={() => {
                 onPressAgreeTerm()
               }}>
-              <Image source={checkedTerm ? iconChecked : iconUnCheck} />
+              <Image
+                style={styles.img}
+                source={checkedTerm ? iconChecked : iconUnCheck}
+              />
             </TouchableOpacity>
-            <Text style={styles.labelEmail}>I'm agree to login</Text>
+            <Text style={styles.labelEmail}>I'm agree to login xds</Text>
           </View>
-
           <Button
             style={styles.btn}
             onPress={() => {
               handlerLogin()
             }}
+            size="normal"
             text="SignIn"
             mode="contained"
           />
         </View>
-      </TouchableWithoutFeedback>
+      </ScrollView>
     </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.colors.white,
-
     flexGrow: 1,
   },
   wrapContainer: {
+    marginTop: 30,
     padding: theme.spacing(3),
   },
   logo: {
-    width: 350,
-    height: 200,
+    width: 300,
+    height: 160,
     alignSelf: 'center',
     marginBottom: theme.spacing(2),
   },
@@ -102,24 +101,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   btn: {
-    marginLeft: theme.spacing(4),
+    marginLeft: theme.spacing(2),
   },
   wrapCheckBox: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    marginBottom: theme.spacing(4),
   },
-  inputEmail: {
+  textInput: {
     height: theme.spacing(6),
+    paddingStart: 12,
     borderWidth: 2,
     borderColor: theme.colors.grey,
     marginTop: 8,
     marginBottom: 8,
   },
   img: {
-    minWidth: 30,
-    minHeight: 30,
+    minWidth: 20,
+    minHeight: 20,
     marginLeft: theme.spacing(1),
   },
   labelEmail: {
@@ -129,6 +128,8 @@ const styles = StyleSheet.create({
       lineHeight: 1.5,
     }),
     marginLeft: theme.spacing(1),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 })
 

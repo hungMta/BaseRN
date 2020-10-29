@@ -1,5 +1,11 @@
 import React from 'react'
-import {ActivityIndicator, View, Modal, StyleSheet} from 'react-native'
+import {
+  ActivityIndicator,
+  View,
+  Modal,
+  StyleSheet,
+  Platform,
+} from 'react-native'
 import theme from '../theme'
 
 interface Props {
@@ -32,9 +38,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalView: {
-    backgroundColor: 'white',
+    backgroundColor: Platform.OS === 'android' ? 'white' : undefined,
     margin: 10,
-    borderRadius: 50,
+    borderRadius: 40,
     padding: 15,
     alignItems: 'center',
   },
