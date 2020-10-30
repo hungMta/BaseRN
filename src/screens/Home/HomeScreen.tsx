@@ -12,6 +12,7 @@ import IdView from '../../components/IdView'
 import MessageItem from './MessageItem'
 import SearchView from '../../components/SearchView/SearchView'
 import TabGroup from '../../components/TabGroup/TabGroup'
+import HistoryTeacherView from '../../components/HistoryTeacherView/index'
 
 import HeaderOption from '../../components/HeaderOption'
 
@@ -57,7 +58,8 @@ const HomeScreen = () => {
   }, [currentIndex])
   return (
     <SafeAreaView style={styles.container}>
-      {loading && <Loading isShowIndicator={loading} />}
+      <HistoryTeacherView isShowIndicator={true} />
+      {/* {loading && <Loading isShowIndicator={loading} />} */}
       <HeaderOption />
       {isApplySurala && (
         <View style={styles.main}>
@@ -67,7 +69,7 @@ const HomeScreen = () => {
 
       <View style={styles.mainId}>
         <IdView isGroupTalk={false} selectedItem={data[1]} isStudent={false} />
-        <SearchView />
+        {/* <SearchView /> */}
         <TabGroup
           itemSelected={currentIndex}
           onItemSelected={setCurrentIndex}
