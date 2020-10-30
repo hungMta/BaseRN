@@ -3,9 +3,10 @@ import HomeScreen from '../../screens/Home/HomeScreen'
 import SignInScreen from '../../screens/Auth/SignInScreen'
 import {createStackNavigator} from '@react-navigation/stack'
 import theme from '../../theme'
+import {AccountType} from '../../utils/Constant'
 export type RootStackNavigatorParamList = {
   SignInScreen: undefined
-  HomeScreen: undefined
+  HomeScreen: {accountType: AccountType}
 }
 
 const Stack = createStackNavigator<RootStackNavigatorParamList>()

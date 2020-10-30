@@ -1,95 +1,37 @@
-import React, {useState} from 'react'
-import {
-  StyleSheet,
-  View,
-  FlatList,
-  Image,
-  SafeAreaView,
-  Platform,
-} from 'react-native'
-import Loading from '../../components/Loading'
-import IdView from '../../components/IdView'
-import MessageItem from './MessageItem'
-import SearchView from '../../components/SearchView/SearchView'
-import TabGroup from '../../components/TabGroup/TabGroup'
-
+import React from 'react'
+import {StyleSheet, SafeAreaView, Platform} from 'react-native'
+import {AccountType} from '../../utils/Constant'
+import StudentHomeScreen from '../StudentHome/StudentHomeScreen'
+import TeacherHomeScreen from '../TeacherHome/TeacherHomeScreen'
+import GuardianHomeScreen from '../GuardianHome/GuardianHomeScreen'
 import HeaderOption from '../../components/HeaderOption'
+import {RouteProp} from '@react-navigation/native'
+import {RootStackNavigatorParamList} from '../../navigation/navigators/RootStackNavigator'
 
-import {useRef} from 'react'
-import {useEffect} from 'react'
-const logoImage = require('../../assets/images/12.jpg')
-const HomeScreen = () => {
-  const data = [
-    {
-      id: 1,
-      key_id: '12398102 223 PHI_NQ ',
-      content: ' hi hw  自分の保護者ID sj sj qu woz qwh ls shj',
-    },
-    {
-      id: 2,
-      key_id: '12398102 2s1 - PHI_NQ',
-      content: ' 自分の保護者ID  hi hw sj sj qu woz qed wh ls shj',
-    },
-    {
-      id: 3,
-      key_id: '123 981 02  HUNG-TD',
-      content: ' hi hw sj sj qu woz 自分の保護者ID sd  qwh ls shj',
-    },
-    {
-      id: 4,
-      key_id: '2 1239 81 s02 QUAN XD',
-      content: ' hi hw sj sj qu woz qwh ls shj 自分の保護者ID',
-    },
-  ]
-  const flastRef = useRef(null)
-  const [currentIndex, setCurrentIndex] = useState(1)
-  const [isApplySurala, setApplySulara] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const handlerItem = async () => {
-    setLoading(true)
-    setTimeout(function () {
-      setLoading(false)
-    }, 2000)
+interface Props {
+  route: RouteProp<RootStackNavigatorParamList, 'HomeScreen'>
+}
+
+const HomeScreen: React.FC<Props> = ({route}) => {
+  const accountType = route.params.accountType
+  var contentView: React.ReactElement
+
+  switch (accountType) {
+    case AccountType.Student:
+      contentView = <StudentHomeScreen />
+      break
+    case AccountType.Teacher:
+      contentView = <TeacherHomeScreen />
+      break
+    case AccountType.Guardian:
+      contentView = <GuardianHomeScreen />
+      break
   }
-  useEffect(() => {
-    // TODO call API reset list Data
-    handlerItem()
-  }, [currentIndex])
+
   return (
     <SafeAreaView style={styles.container}>
-      {loading && <Loading isShowIndicator={loading} />}
       <HeaderOption />
-      {isApplySurala && (
-        <View style={styles.main}>
-          <Image style={styles.logo} source={logoImage} />
-        </View>
-      )}
-
-      <View style={styles.mainId}>
-        <IdView isGroupTalk={false} selectedItem={data[1]} isStudent={false} />
-        <SearchView />
-        <TabGroup
-          itemSelected={currentIndex}
-          onItemSelected={setCurrentIndex}
-        />
-
-        <FlatList
-          ref={flastRef}
-          data={data}
-          keyExtractor={(item) => `${item.id}`}
-          scrollIndicatorInsets={styles.scrollIndicatorInsets}
-          contentContainerStyle={styles.contentContainerStyle}
-          renderItem={({item}) => (
-            <MessageItem
-              key={`${item.id}`}
-              items={item}
-              onPress={() => {
-                // TODO do some thing you want
-              }}
-            />
-          )}
-        />
-      </View>
+      {contentView}
     </SafeAreaView>
   )
 }

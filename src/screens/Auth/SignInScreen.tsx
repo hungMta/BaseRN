@@ -14,6 +14,7 @@ import Loading from '../../components/Loading'
 
 import Button from '../../components/Button'
 import theme from '../../theme'
+import {AccountType} from '../../utils/Constant'
 const logoImage = require('../../assets/images/12.jpg')
 
 const iconChecked = require('../../assets/images/square_checked_icon.png')
@@ -22,6 +23,7 @@ const SignInScreen = () => {
   const navigation = useNavigation()
   const [checkedTerm, setCheckedTerm] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState('')
   const onPressAgreeTerm = () => {
     setCheckedTerm(!checkedTerm)
   }
@@ -29,7 +31,19 @@ const SignInScreen = () => {
     setLoading(true)
     setTimeout(function () {
       setLoading(false)
-      navigation.navigate('HomeScreen')
+      var accountType = AccountType.Student
+      if (email === '1') {
+        accountType = AccountType.Student
+      }
+      if (email === '2') {
+        accountType = AccountType.Teacher
+      }
+      if (email === '3') {
+        accountType = AccountType.Guardian
+      }
+      navigation.navigate('HomeScreen', {
+        accountType,
+      })
     }, 1000)
   }
   return (
@@ -41,6 +55,7 @@ const SignInScreen = () => {
           <TextInput
             underlineColorAndroid="transparent"
             style={styles.textInput}
+            onChangeText={setEmail}
           />
           <TextInput
             secureTextEntry={true}

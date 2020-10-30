@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native'
 import React from 'react'
 import {View, StyleSheet, Text} from 'react-native'
 import {TouchableOpacity} from 'react-native-gesture-handler'
@@ -7,6 +8,7 @@ interface Props {
   text?: string
 }
 const HeaderOption: React.FC<Props> = ({text = '1726123-2387'}) => {
+  const navigation = useNavigation()
   return (
     <View style={styles.centeredView}>
       <View style={styles.styleUserId}>
@@ -20,6 +22,7 @@ const HeaderOption: React.FC<Props> = ({text = '1726123-2387'}) => {
         <TouchableOpacity
           onPress={() => {
             // TODO
+            navigation.navigate('SignInScreen')
           }}>
           <View style={styles.styleButton}>
             <Text style={styles.textBtn}>Logout</Text>
@@ -29,7 +32,7 @@ const HeaderOption: React.FC<Props> = ({text = '1726123-2387'}) => {
           onPress={() => {
             // TODO
           }}>
-          <View style={[styles.styleButton, {marginLeft: 5}]}>
+          <View style={[styles.styleButton]}>
             <Text style={styles.textBtn}>Setting</Text>
           </View>
         </TouchableOpacity>
