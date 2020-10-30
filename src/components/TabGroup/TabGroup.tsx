@@ -2,34 +2,31 @@ import React from 'react'
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import theme from '../../theme'
 import {TabGroupType} from '../../navigation/utils/TabGroupType'
+let colorUnselect = theme.colors.colorButton
+let colorSelected = theme.colors.red
+
 interface Props {
   text?: string
   itemSelected?: number
-  color?: string
   onItemSelected: (index: number) => void
 }
-const TabGroup: React.FC<Props> = ({
-  text,
-  itemSelected,
-  color = theme.colors.colorButton,
-  onItemSelected,
-}) => {
-  let colorButtonStudent = color
-  let colorButtonTeacher = color
-  let colorButtonGuardian = color
-  let colorButtonGroup = color
+const TabGroup: React.FC<Props> = ({itemSelected, onItemSelected}) => {
+  let colorButtonStudent = colorUnselect
+  let colorButtonTeacher = colorUnselect
+  let colorButtonGuardian = colorUnselect
+  let colorButtonGroup = colorUnselect
 
   if (itemSelected === TabGroupType.student) {
-    colorButtonStudent = theme.colors.red
+    colorButtonStudent = colorSelected
   }
   if (itemSelected === TabGroupType.teacher) {
-    colorButtonTeacher = theme.colors.red
+    colorButtonTeacher = colorSelected
   }
   if (itemSelected === TabGroupType.guardian) {
-    colorButtonGuardian = theme.colors.red
+    colorButtonGuardian = colorSelected
   }
   if (itemSelected === TabGroupType.group) {
-    colorButtonGroup = theme.colors.red
+    colorButtonGroup = colorSelected
   }
   return (
     <View style={styles.centeredView}>
@@ -102,7 +99,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   textBtn: {
-    color: '#000000',
+    color: theme.colors.textBlackPrimary,
   },
 })
 export default TabGroup

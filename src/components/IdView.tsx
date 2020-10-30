@@ -15,7 +15,6 @@ interface Props {
   style?: StyleProp<ViewStyle>
 }
 const IdView: React.FC<Props> = ({isGroupTalk, selectedItem, isStudent}) => {
-  console.log(isStudent)
   let typeGroupTalk = false
   let typeHistory = false
   let typeBlank = false
@@ -54,7 +53,7 @@ const IdView: React.FC<Props> = ({isGroupTalk, selectedItem, isStudent}) => {
           </View>
         </TouchableOpacity>
       )}
-      {typeBlank && <View style={{flex: 1}} />}
+      {typeBlank && <View style={styles.styleBlank} />}
 
       {typeGroupTalk && (
         <TouchableOpacity
@@ -73,6 +72,7 @@ const IdView: React.FC<Props> = ({isGroupTalk, selectedItem, isStudent}) => {
   )
 }
 const styles = StyleSheet.create({
+  styleBlank: {flex: 1},
   wrapButton: {
     flex: 0,
     alignItems: 'center',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   textBtn: {
-    color: 'white',
+    color: theme.colors.white,
   },
 })
 

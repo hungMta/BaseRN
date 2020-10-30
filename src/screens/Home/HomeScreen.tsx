@@ -5,7 +5,6 @@ import {
   FlatList,
   Image,
   SafeAreaView,
-  Alert,
   Platform,
 } from 'react-native'
 import Loading from '../../components/Loading'
@@ -44,6 +43,7 @@ const HomeScreen = () => {
   ]
   const flastRef = useRef(null)
   const [currentIndex, setCurrentIndex] = useState(1)
+  const [isApplySurala, setApplySulara] = useState(false)
   const [loading, setLoading] = useState(false)
   const handlerItem = async () => {
     setLoading(true)
@@ -52,16 +52,19 @@ const HomeScreen = () => {
     }, 2000)
   }
   useEffect(() => {
-    // call API reset list Data
+    // TODO call API reset list Data
     handlerItem()
   }, [currentIndex])
   return (
     <SafeAreaView style={styles.container}>
       {loading && <Loading isShowIndicator={loading} />}
       <HeaderOption />
-      {/* <View style={styles.main}>
-        <Image style={styles.logo} source={logoImage} />
-      </View> */}
+      {isApplySurala && (
+        <View style={styles.main}>
+          <Image style={styles.logo} source={logoImage} />
+        </View>
+      )}
+
       <View style={styles.mainId}>
         <IdView isGroupTalk={false} selectedItem={data[1]} isStudent={false} />
         <SearchView />

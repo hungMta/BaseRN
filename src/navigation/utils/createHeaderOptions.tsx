@@ -7,13 +7,15 @@ import HeaderButton from '../../components/HeaderButton'
 const createHeaderOptions = (options?: {
   transparent?: boolean
   backButton?: React.ReactNode
+  closeButton?: React.ReactNode
 }): StackHeaderOptions => {
   const transparent = options?.transparent
   const backButton = options?.backButton
   return {
-    headerLeft: () =>
+    headerRight: () =>
       backButton === undefined ? <HeaderButton.Auto /> : backButton,
     headerTransparent: transparent,
+
     headerBackground: transparent ? () => <View /> : undefined,
   }
 }

@@ -14,7 +14,6 @@ const SearchView: React.FC<Props> = ({}) => {
   return (
     <View style={styles.wrapButton}>
       <Searchbar
-        style={{backgroundColor: 'grey'}}
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   textBtn: {
-    color: 'white',
+    color: theme.colors.white,
   },
 })
 
