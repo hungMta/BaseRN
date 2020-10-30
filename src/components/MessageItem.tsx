@@ -7,9 +7,9 @@ import {
   Text,
   Image,
 } from 'react-native'
-import theme from '../../theme'
-import Divider from '../../components/Divider'
-const logoImage = require('../../assets/images/12.jpg')
+import theme from '../theme'
+import Divider from './Divider'
+const logoImage = require('../assets/images/12.jpg')
 interface Props {
   items?: any // TODO data or call Api to take
   onPress: () => void
