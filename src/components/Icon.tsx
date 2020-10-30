@@ -10,7 +10,7 @@ interface Props {
   style?: ViewStyle | TextStyle
 }
 
-const Icon: React.SFC<Props> = ({name, size, color, style}) => {
+const Icon: React.FC<Props> = ({name, size, color, style}) => {
   return (
     <MaterialIcon
       name={name}
