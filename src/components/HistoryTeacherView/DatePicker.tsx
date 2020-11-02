@@ -10,7 +10,6 @@ interface Props {
   timeSelected?: string
   onTimeSelected: (time: string) => void
 }
-// timeStart = moment(product.saleStartAt).format('YYYY年MM月DD日')
 const DatePicker: React.FC<Props> = ({
   timeDefault,
   timeSelected,
@@ -21,7 +20,6 @@ const DatePicker: React.FC<Props> = ({
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)
-    console.warn('A date has been picked: ', timeDefault)
   }
 
   const hideDatePicker = () => {

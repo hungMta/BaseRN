@@ -13,7 +13,6 @@ export async function fetchData(
   body: any,
 ): Promise<Response> {
   let apiURL = Config.API_URL + path
-  console.log(apiURL, body, method)
   const result = fetch(apiURL, {
     headers: {
       Accept: 'application/json',
