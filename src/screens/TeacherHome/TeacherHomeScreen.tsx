@@ -12,7 +12,7 @@ import Loading from '../../components/Loading'
 import MessageItem from '../../components/MessageItem'
 import SearchView from '../../components/SearchView/SearchView'
 import TabGroup from '../../components/TabGroup/TabGroup'
-
+import HistoryTeacherView from '../../components/HistoryTeacherView/index'
 const logoImage = require('../../assets/images/12.jpg')
 const TeacherHomeScreen = () => {
   const data = [
@@ -58,15 +58,15 @@ const TeacherHomeScreen = () => {
           <Image style={styles.logo} source={logoImage} />
         </View>
       )}
+      <HistoryTeacherView />
 
       <View style={styles.mainId}>
         <IdView isGroupTalk={false} selectedItem={data[1]} isStudent={false} />
-        <SearchView />
+        {/* <SearchView /> */}
         <TabGroup
           itemSelected={currentIndex}
           onItemSelected={setCurrentIndex}
         />
-
         <FlatList
           data={data}
           keyExtractor={(item) => `${item.id}`}

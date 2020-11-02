@@ -31,15 +31,15 @@ const SignInScreen = () => {
     setLoading(true)
     setTimeout(function () {
       setLoading(false)
-      var accountType = AccountType.Student
+      var accountType = AccountType.Teacher
       if (email === '1') {
         accountType = AccountType.Student
       }
       if (email === '2') {
-        accountType = AccountType.Teacher
+        accountType = AccountType.Guardian
       }
       if (email === '3') {
-        accountType = AccountType.Guardian
+        accountType = AccountType.Teacher
       }
       navigation.navigate('HomeScreen', {
         accountType,

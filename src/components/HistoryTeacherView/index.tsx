@@ -19,13 +19,9 @@ var dateNow = moment().format('DD/MM/YYYY')
 var dateNextMonth = moment().add(1, 'months').format('DD/MM/YYYY')
 interface Props {
   text?: string
-  colorIndicator?: string
-  isShowIndicator: boolean
+  isShowIndicator?: boolean
 }
-const HistoryTeacherView: React.FC<Props> = ({
-  isShowIndicator = false,
-  colorIndicator = theme.colors.red,
-}) => {
+const HistoryTeacherView: React.FC<Props> = ({isShowIndicator = true}) => {
   const [dateStart, setDateInput] = useState(dateNow)
   const [dateEnd, setDate2Input] = useState(dateNextMonth)
   useEffect(() => {}, [dateStart, dateEnd])
@@ -36,7 +32,6 @@ const HistoryTeacherView: React.FC<Props> = ({
           <View style={styles.btnClose}>
             <Text style={{textAlign: 'right', color: 'red'}}>X</Text>
           </View>
-
           <View style={styles.wrapBtnDateTime}>
             <DatePicker
               timeDefault={dateStart}

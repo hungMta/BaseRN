@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 10,
   },
   modalView: {
     backgroundColor: Platform.OS === 'android' ? 'white' : undefined,
