@@ -24,8 +24,8 @@ const SignInScreen = () => {
   const navigation = useNavigation()
   const [checkedTerm, setCheckedTerm] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [loginId, setloginId] = useState('')
-  const [password, setPassword] = useState('')
+  const [loginId, setloginId] = useState('07000021')
+  const [password, setPassword] = useState('miki1972')
   const onPressAgreeTerm = () => {
     setCheckedTerm(!checkedTerm)
   }

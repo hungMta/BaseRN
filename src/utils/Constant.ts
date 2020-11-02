@@ -3,3 +3,7 @@ export enum AccountType {
   Guardian,
   Teacher,
 }
+
+export class Constant {
+  public static readonly TOKEN = 'TOKEN'
+}
