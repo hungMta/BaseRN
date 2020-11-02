@@ -1,10 +1,10 @@
 import Config from 'react-native-config'
 
 export enum MethodHTTP {
-  POST,
-  GET,
-  DELETE,
-  PUT,
+  POST = 'POST',
+  GET = 'GET',
+  DELETE = 'DELETE',
+  PUT = 'PUT',
 }
 
 export async function fetchData(
@@ -13,7 +13,8 @@ export async function fetchData(
   body: any,
 ): Promise<Response> {
   let apiURL = Config.API_URL + path
-  const result = await fetch(apiURL, {
+  console.log(apiURL, body, method)
+  const result = fetch(apiURL, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
