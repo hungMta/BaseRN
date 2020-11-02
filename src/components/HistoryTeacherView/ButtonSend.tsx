@@ -1,19 +1,11 @@
-import React, {useState} from 'react'
-import {
-  View,
-  Modal,
-  StyleSheet,
-  Platform,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native'
+import React from 'react'
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native'
 import theme from '../../theme'
 interface Props {
   text?: string
   onPress?: () => void
 }
-const ButtonSend: React.FC<Props> = ({text, onPress}) => {
+const ButtonSend: React.FC<Props> = ({}) => {
   return (
     <View style={styles.main}>
       <TouchableOpacity style={styles.btn}>

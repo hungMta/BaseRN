@@ -9,12 +9,13 @@ import {
   Text,
   SafeAreaView,
   TextInput,
+  Alert,
 } from 'react-native'
 import Loading from '../../components/Loading'
 
 import Button from '../../components/Button'
 import theme from '../../theme'
-import {AccountType} from '../../utils/Constant'
+import {SignIn} from '../../api/AuthServices'
 const logoImage = require('../../assets/images/12.jpg')
 
 const iconChecked = require('../../assets/images/square_checked_icon.png')
@@ -23,28 +24,25 @@ const SignInScreen = () => {
   const navigation = useNavigation()
   const [checkedTerm, setCheckedTerm] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState('')
+  const [loginId, setloginId] = useState('')
+  const [password, setPassword] = useState('')
   const onPressAgreeTerm = () => {
     setCheckedTerm(!checkedTerm)
   }
   const handlerLogin = async () => {
     setLoading(true)
-    setTimeout(function () {
+    try {
+      const resultLogin = await SignIn(loginId, password)
       setLoading(false)
-      var accountType = AccountType.Teacher
-      if (email === '1') {
-        accountType = AccountType.Student
+      if (resultLogin === true) {
+        navigation.navigate('HomeScreen', {
+          accountType: '1',
+        })
       }
-      if (email === '2') {
-        accountType = AccountType.Guardian
-      }
-      if (email === '3') {
-        accountType = AccountType.Teacher
-      }
-      navigation.navigate('HomeScreen', {
-        accountType,
-      })
-    }, 1000)
+    } catch (error) {
+      setLoading(false)
+      Alert.alert('Error', error.toString())
+    }
   }
   return (
     <SafeAreaView style={styles.container}>
@@ -55,12 +53,13 @@ const SignInScreen = () => {
           <TextInput
             underlineColorAndroid="transparent"
             style={styles.textInput}
-            onChangeText={setEmail}
+            onChangeText={setloginId}
           />
           <TextInput
             secureTextEntry={true}
             underlineColorAndroid="transparent"
             style={styles.textInput}
+            onChangeText={setPassword}
           />
         </View>
 

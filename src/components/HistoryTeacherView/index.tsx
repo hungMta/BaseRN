@@ -30,7 +30,7 @@ const HistoryTeacherView: React.FC<Props> = ({isShowIndicator = true}) => {
       <View style={styles.centeredView}>
         <View style={styles.main}>
           <View style={styles.btnClose}>
-            <Text style={{textAlign: 'right', color: 'red'}}>X</Text>
+            <Text style={styles.txtClose}>X</Text>
           </View>
           <View style={styles.wrapBtnDateTime}>
             <DatePicker
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   btnClose: {
     paddingHorizontal: 4,
   },
+  txtClose: {textAlign: 'right', color: 'red'},
   wrapText: {
     paddingHorizontal: 20,
     marginTop: 12,

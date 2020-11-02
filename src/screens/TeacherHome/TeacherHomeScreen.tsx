@@ -62,7 +62,7 @@ const TeacherHomeScreen = () => {
 
       <View style={styles.mainId}>
         <IdView isGroupTalk={false} selectedItem={data[1]} isStudent={false} />
-        {/* <SearchView /> */}
+        <SearchView />
         <TabGroup
           itemSelected={currentIndex}
           onItemSelected={setCurrentIndex}
