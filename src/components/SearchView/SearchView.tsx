@@ -10,7 +10,7 @@ interface Props {
 const SearchView: React.FC<Props> = ({}) => {
   const [searchQuery, setSearchQuery] = useState('')
 
-  const onChangeSearch = (query) => setSearchQuery(query)
+  const onChangeSearch = (query: string) => setSearchQuery(query)
   return (
     <View style={styles.wrapButton}>
       <Searchbar

@@ -1,5 +1,5 @@
 export enum AccountType {
-  Student,
-  Teacher,
+  Student = 1,
   Guardian,
+  Teacher,
 }
